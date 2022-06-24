@@ -19,14 +19,7 @@ module asp 'asp.bicep' = {
   }
 }
 
-module vnet 'network.bicep' = {
-  scope: rsg
-  name: 'vnet'
-  params: {
-    basename: baseName
-    location: location
-  }
-}
+
 
 module functionApp 'functionapp.bicep' = {
   scope: rsg
@@ -35,7 +28,6 @@ module functionApp 'functionapp.bicep' = {
     baseName: baseName
     location: location
     aspId: asp.outputs.aspId
-    subnetId: vnet.outputs.functionAppSubnetId
     webAppHostName: webApp.outputs.appHostname
   }
 }
@@ -50,17 +42,8 @@ module webApp 'webapp.bicep' = {
   }
 }
 
-module webAppEndpoint 'private-endpoint.bicep' = {
-  scope: rsg
-  name: 'webAppEndpoint'
-  params: {
-    endpointName: 'pe-webapp'
-    linkedServiceId: webApp.outputs.appId
-    location: location
-    privateDnsZoneId: vnet.outputs.privateDnsZoneId
-    subnetId: vnet.outputs.webAppSubnetId
-  }
-}
+
+
 
 output resourceGroupName string = rsg.name
 output functionAppName string = functionApp.outputs.functionAppName

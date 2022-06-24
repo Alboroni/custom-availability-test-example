@@ -1,7 +1,6 @@
 param baseName string
 param location string
 param aspId string
-param subnetId string
 param webAppHostName string
 
 var uniqueName = '${uniqueString(baseName, 'functionApp', resourceGroup().id)}'
@@ -69,13 +68,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
     }
   }
 
-  resource netConfig 'networkConfig@2020-10-01' = {
-    name: 'virtualNetwork'
-    properties: {
-      subnetResourceId: subnetId
-    }
-  }
-}
+
 
 resource kvAccess 'Microsoft.KeyVault/vaults/accessPolicies@2018-02-14' = {
   parent: kv
