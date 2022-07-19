@@ -24,6 +24,15 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: deploy iac
+      uses: azure/arm-deploy@v1
+      id: iac-deploy
+      with:
+        template: ./IaC/main.bicep
+        parameters: baseName=${{ github.event.inputs.baseName }}
+        scope: subscription
+        region: ${{ github.event.inputs.location }}
+
     - name: deploy function app
       uses: Azure/functions-action@v1.4.0
       with:
