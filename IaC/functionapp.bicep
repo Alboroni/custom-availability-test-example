@@ -64,7 +64,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
       'FUNCTIONS_WORKER_RUNTIME_VERSION': '~7'
       'APPINSIGHTS_INSTRUMENTATIONKEY': ai.properties.InstrumentationKey
       'webAppHostname': webAppHostName
-      'webjobURI': webjobURI
+      'webjobURI': webJobURI
       'webJobUser': webJobUser
       'webJobSecret': webJobSecret
       'location': resourceGroup().location
@@ -93,3 +93,4 @@ resource kvAccess 'Microsoft.KeyVault/vaults/accessPolicies@2018-02-14' = {
 
 output functionAppName string = fa.name
 output functionAppId string = fa.id
+}

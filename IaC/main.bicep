@@ -29,6 +29,7 @@ module functionApp 'functionapp.bicep' = {
     location: location
     aspId: asp.outputs.aspId
     webAppHostName: webApp.outputs.appHostname
+    webjobURI: webJobURI
   }
 }
 
