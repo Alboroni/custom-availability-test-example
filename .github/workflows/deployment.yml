@@ -11,8 +11,8 @@ on:
         description: Azure region for the deployment
         required: true
         default: 'uksouth'
-       webJobURI
-        description: URI od hte WebJobto be monitored
+      webJobURI:
+        description: URI of the webjob to be monitored
         required: true 
         default: 'https://destinedtofail.co.uk'
 
