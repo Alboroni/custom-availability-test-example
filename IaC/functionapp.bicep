@@ -1,7 +1,8 @@
 param baseName string
 param location string
 param webAppHostName string
-param webjobURI string
+param webJobURI string
+
 
 var uniqueName = '${uniqueString(baseName, 'functionApp', resourceGroup().id)}'
 var stgSecretName = 'storageConnString'
@@ -64,9 +65,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
       'FUNCTIONS_WORKER_RUNTIME_VERSION': '~7'
       'APPINSIGHTS_INSTRUMENTATIONKEY': ai.properties.InstrumentationKey
       'webAppHostname': webAppHostName
-      'webjobURI': webJobURI
-      'webJobUser': webJobUser
-      'webJobSecret': webJobSecret
+      'webJobURI': webJobURI
       'location': resourceGroup().location
     }
   }
