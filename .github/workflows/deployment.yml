@@ -32,6 +32,7 @@ jobs:
 
     - name: deploy iac
       uses: azure/arm-deploy@v1
+      continue-on-error: true
       id: iac-deploy
       with:
         template: ./IaC/main.bicep
