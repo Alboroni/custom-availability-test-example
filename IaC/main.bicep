@@ -20,6 +20,15 @@ module asp 'asp.bicep' = {
   }
 }
 
+module la 'logAnaly.bicep' = {
+  scope: rsg
+  name: 'la'
+  params: {
+    location: location
+    name: baseName
+  }
+}
+
 module webApp 'webapp.bicep' = {
   scope: rsg
   name: 'webApp'

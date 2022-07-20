@@ -1,6 +1,7 @@
 param baseName string
 param location string
 param aspId string
+param laId string
 param webAppHostName string
 param webJobURI string
 
@@ -37,12 +38,14 @@ resource kv 'Microsoft.KeyVault/vaults@2018-02-14' = {
   }
 }
 
-resource ai 'Microsoft.Insights/components@2015-05-01' = {
+
+resource ai 'Microsoft.Insights/components@2020-02-02' = {
   name: baseName
   location: location
   kind: 'web'
   properties: {
     Application_Type: 'web'
+    WorkspaceResourceId: laId
   }
 }
 
