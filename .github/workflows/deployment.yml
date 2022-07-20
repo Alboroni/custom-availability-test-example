@@ -35,13 +35,14 @@ jobs:
       id: iac-deploy
       with:
         template: ./IaC/main.bicep
-        parameters: baseName=${{ github.event.inputs.baseName }}
+        parameters: baseName=${{ github.event.inputs.baseName }}  webJobURI=${{ github.event.inputs.webJobURI }}
         scope: subscription
         region: ${{ github.event.inputs.location }}
 
     - name: deploy function app
       uses: Azure/functions-action@v1.4.0
       with:
+
         app-name: ${{ steps.iac-deploy.outputs.functionAppName }}
         package: ./FunctionApp
 

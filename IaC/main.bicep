@@ -36,6 +36,7 @@ module webApp 'webapp.bicep' = {
     aspId: asp.outputs.aspId
     baseName: baseName
     location: location
+   
   }
 }
 
