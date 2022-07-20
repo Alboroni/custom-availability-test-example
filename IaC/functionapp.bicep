@@ -1,5 +1,6 @@
 param baseName string
 param location string
+param aspId string
 param webAppHostName string
 param webJobURI string
 
