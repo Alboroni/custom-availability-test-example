@@ -71,7 +71,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
     }
   }
 
-
+}
 
 resource kvAccess 'Microsoft.KeyVault/vaults/accessPolicies@2018-02-14' = {
   parent: kv
@@ -93,4 +93,4 @@ resource kvAccess 'Microsoft.KeyVault/vaults/accessPolicies@2018-02-14' = {
 
 output functionAppName string = fa.name
 output functionAppId string = fa.id
-}
+

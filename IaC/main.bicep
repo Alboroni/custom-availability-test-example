@@ -1,6 +1,7 @@
 targetScope = 'subscription'
 param baseName string
 param location string = deployment().location
+param webJobURI string
 
 resource rsg 'Microsoft.Resources/resourceGroups@2020-08-01' = {
   name: baseName
@@ -19,6 +20,16 @@ module asp 'asp.bicep' = {
   }
 }
 
+module webApp 'webapp.bicep' = {
+  scope: rsg
+  name: 'webApp'
+  params: {
+    aspId: asp.outputs.aspId
+    baseName: baseName
+    location: location
+  }
+}
+
 
 
 module functionApp 'functionapp.bicep' = {
@@ -29,19 +40,11 @@ module functionApp 'functionapp.bicep' = {
     location: location
     aspId: asp.outputs.aspId
     webAppHostName: webApp.outputs.appHostname
-    webjobURI: webJobURI
+    webJobURI: webJobURI
   }
 }
 
-module webApp 'webapp.bicep' = {
-  scope: rsg
-  name: 'webApp'
-  params: {
-    aspId: asp.outputs.aspId
-    baseName: baseName
-    location: location
-  }
-}
+
 
 
 

@@ -29,4 +29,5 @@ $appInsightsParams = @{
     Success           = $success ?? $true
     Message           = $message ?? ""
 }
+
 Send-AppInsightsAvailability @appInsightsParams
