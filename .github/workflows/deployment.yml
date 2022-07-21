@@ -15,7 +15,7 @@ on:
         description: URI of the webjob to be monitored
         required: true 
         default: 'https://destinedtofail.co.uk'
-      webJobUser
+      webJobUser:
         description: Web Jon USer Account
         required: true 
         default: 'test'
