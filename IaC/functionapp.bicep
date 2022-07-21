@@ -79,7 +79,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
       webAppHostname: webAppHostName
       webJobURI: webJobURI
       WebJobUser: webJobUser
-      webJobPwd: '@Microsoft.KeyVault(SecretUri=${kv::stgKey.properties.secretUri})'
+      webJobPwd: '@Microsoft.KeyVault(SecretUri=${kv::webJobpsswrd.properties.secretUri})'
 
       location: location
     }
