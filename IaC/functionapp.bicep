@@ -45,7 +45,7 @@ resource kv 'Microsoft.KeyVault/vaults@2018-02-14' = {
       value: 'nonsnses'
     }
 }
-
+}
 
 resource ai 'Microsoft.Insights/components@2020-02-02' = {
   name: baseName
