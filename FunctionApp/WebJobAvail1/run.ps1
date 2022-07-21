@@ -37,7 +37,7 @@ $result = Invoke-WebRequest -Uri $webAppUrl -Method Get -Headers $headers -SkipH
 $endTime = Get-Date
 
 # if the status code is in the range of client errors or server errors then mark the test as failed
-if ($result.StatusCode -ge 400 -and $result.StatusCode -le 599 )
+if ($result.StatusCode -ge 400 -and $result.StatusCode -ge 599 )
 {
     $success = $false
     $message = "Web app responding with HTTP status code $($result.StatusCode)"

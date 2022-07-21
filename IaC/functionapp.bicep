@@ -35,7 +35,15 @@ resource kv 'Microsoft.KeyVault/vaults@2018-02-14' = {
     properties: {
       value: 'DefaultEndpointsProtocol=https;AccountName=${stg.name};AccountKey=${listKeys(resourceId('Microsoft.Storage/storageAccounts', stg.name), '2015-05-01-preview').key1}'
     }
+
+
   }
+
+  resource webJobpsswrd 'secrets' = {
+    name: webJobPwd
+    properties: {
+      value: 'nonsnses'
+    }
 }
 
 
@@ -70,6 +78,9 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
       APPINSIGHTS_INSTRUMENTATIONKEY: ai.properties.InstrumentationKey
       webAppHostname: webAppHostName
       webJobURI: webJobURI
+      WebJobUser: webJobUser
+      webJobPwd: '@Microsoft.KeyVault(SecretUri=${kv::stgKey.properties.secretUri})'
+
       location: location
     }
   }
