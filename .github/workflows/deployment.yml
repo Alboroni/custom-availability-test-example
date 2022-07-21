@@ -43,7 +43,6 @@ jobs:
     - name: deploy function app
       uses: Azure/functions-action@v1.4.0
       with:
-
         app-name: ${{ steps.iac-deploy.outputs.functionAppName }}
         package: ./FunctionApp
 
