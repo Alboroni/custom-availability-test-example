@@ -2,7 +2,7 @@ param location string
 param baseName string
 param aspId string
 
-var uniqueName = '${uniqueString(baseName, 'webApp', resourceGroup().id)}'
+var uniqueName = uniqueString(baseName, 'webApp', resourceGroup().id)
 
 resource appService 'Microsoft.Web/sites@2020-06-01' = {
   name: uniqueName
