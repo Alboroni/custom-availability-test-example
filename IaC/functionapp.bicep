@@ -1,5 +1,5 @@
 param baseName string
-param location string =resourceGroup().location
+param location string = resourceGroup().location
 param aspId string
 param laId string
 param webAppHostName string
