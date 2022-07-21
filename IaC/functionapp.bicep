@@ -4,9 +4,10 @@ param aspId string
 param laId string
 param webAppHostName string
 param webJobURI string
+param location string = resourceGroup().location
 
 
-var uniqueName = '${uniqueString(baseName, 'functionApp', resourceGroup().id)}'
+var uniqueName = uniqueString(baseName, 'functionApp', resourceGroup().id)
 var stgSecretName = 'storageConnString'
 
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
@@ -63,14 +64,14 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
   resource appSettings 'config@2018-11-01' = {
     name: 'appsettings'
     properties: {
-      'AzureWebJobsStorage': '@Microsoft.KeyVault(SecretUri=${kv::stgKey.properties.secretUri})'
-      'FUNCTIONS_EXTENSION_VERSION': '~3'
-      'FUNCTIONS_WORKER_RUNTIME': 'powershell'
-      'FUNCTIONS_WORKER_RUNTIME_VERSION': '~7'
-      'APPINSIGHTS_INSTRUMENTATIONKEY': ai.properties.InstrumentationKey
-      'webAppHostname': webAppHostName
-      'webJobURI': webJobURI
-      'location': resourceGroup().location
+      AzureWebJobsStorage: '@Microsoft.KeyVault(SecretUri=${kv::stgKey.properties.secretUri})'
+      FUNCTIONS_EXTENSION_VERSION: '~3'
+      FUNCTIONS_WORKER_RUNTIME: 'powershell'
+      FUNCTIONS_WORKER_RUNTIME_VERSION: '~7'
+      APPINSIGHTS_INSTRUMENTATIONKEY: ai.properties.InstrumentationKey
+      webAppHostname: webAppHostName
+      webJobURI: webJobURI
+      location: location
     }
   }
 
