@@ -1,5 +1,3 @@
-# hOw to 
+## The PoC used a customer availability test to monitor WebJobs
 
-An example of how to run custom Azure Application Insights availability tests.
-
-![design](./design.png)
+To monitor WebJob We use Basci Auth to look at the 

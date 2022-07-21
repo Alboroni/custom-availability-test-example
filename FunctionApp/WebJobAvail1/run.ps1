@@ -1,9 +1,9 @@
 # Input bindings are passed in via param block.
 param($Timer)
 
-$webAppUrl = "$($env:webJob)"
+$webAppUrl = "$($env:webJobURI)"
 $userName = "$($env:webJobUser)"
-$userPWD = "$($env:webJobSecret)"
+$userPWD = "$($env:webJobPWD)"
 
 
 # Get the current universal time in the default string format.
@@ -17,11 +17,9 @@ if ($Timer.IsPastDue) {
 # Write an information log with the current time.
 Write-Host "PowerShell timer trigger function ran! TIME: $currentUTCtime"
     
-$webAppUrl = "https://mttwebapp.scm.azurewebsites.net/api/triggeredwebjobs/Sleepy"
-
-    
-$userName = "`$MTTWebApp" 
-$userPWD = "6FZR1th2ZjuN481z7PcEmZDCEcSrLLnEsAp4layyibBRXyyas5ZaFkLYL6bK" 
+#$webAppUrl = "https://mttwebapp.scm.azurewebsites.net/api/triggeredwebjobs/Sleepy"
+#$userName = "`$MTTWebApp" 
+#$userPWD = "6FZR1th2ZjuN481z7PcEmZDCEcSrLLnEsAp4layyibBRXyyas5ZaFkLYL6bK" 
 
 $authHeader = "Basic {0}" -f [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $userName, $userPWD)))
 
@@ -37,7 +35,7 @@ $result = Invoke-WebRequest -Uri $webAppUrl -Method Get -Headers $headers -SkipH
 $endTime = Get-Date
 
 # if the status code is in the range of client errors or server errors then mark the test as failed
-if ($result.StatusCode -ge 400 -and $result.StatusCode -ge 599 )
+if ($result.StatusCode -ge 400 -and $result.StatusCode -le 599 )
 {
     $success = $false
     $message = "Web app responding with HTTP status code $($result.StatusCode)"
