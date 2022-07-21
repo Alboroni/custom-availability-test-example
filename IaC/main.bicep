@@ -1,7 +1,8 @@
 targetScope = 'subscription'
 param baseName string
 param location string = deployment().location
-param webJobURI string
+param webJobURI string 
+param  webJobUser string = 'Test'
 
 resource rsg 'Microsoft.Resources/resourceGroups@2020-08-01' = {
   name: baseName
@@ -52,6 +53,8 @@ module functionApp 'functionapp.bicep' = {
     laId: la.outputs.laId
     webAppHostName: webApp.outputs.appHostname
     webJobURI: webJobURI
+    webJobUser: webJobUser
+
   }
 }
 
