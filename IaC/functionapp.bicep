@@ -1,10 +1,9 @@
 param baseName string
-param location string
+param location string =resourceGroup().location
 param aspId string
 param laId string
 param webAppHostName string
 param webJobURI string
-param location string = resourceGroup().location
 
 
 var uniqueName = uniqueString(baseName, 'functionApp', resourceGroup().id)
