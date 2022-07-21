@@ -3,11 +3,13 @@ param location string = resourceGroup().location
 param aspId string
 param laId string
 param webAppHostName string
+param webJobUser string
 param webJobURI string
 
 
 var uniqueName = uniqueString(baseName, 'functionApp', resourceGroup().id)
 var stgSecretName = 'storageConnString'
+var webJobPWD = 'WebJobPWD'
 
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: uniqueName
@@ -35,17 +37,16 @@ resource kv 'Microsoft.KeyVault/vaults@2018-02-14' = {
     properties: {
       value: 'DefaultEndpointsProtocol=https;AccountName=${stg.name};AccountKey=${listKeys(resourceId('Microsoft.Storage/storageAccounts', stg.name), '2015-05-01-preview').key1}'
     }
-
-
   }
 
-  resource webJobpsswrd 'secrets' = {
-    name: webJobPwd
+  resource webJobP 'secrets' = {
+    name: webJobPWD
     properties: {
-      value: 'nonsnses'
+      value: 'Noncnes'
     }
+  }
 }
-}
+
 
 resource ai 'Microsoft.Insights/components@2020-02-02' = {
   name: baseName
@@ -79,7 +80,7 @@ resource fa 'Microsoft.Web/sites@2019-08-01' = {
       webAppHostname: webAppHostName
       webJobURI: webJobURI
       WebJobUser: webJobUser
-      webJobPwd: '@Microsoft.KeyVault(SecretUri=${kv::webJobpsswrd.properties.secretUri})'
+      webJobPwd: '@Microsoft.KeyVault(SecretUri=${kv::webJobP.properties.secretUri})'
 
       location: location
     }
