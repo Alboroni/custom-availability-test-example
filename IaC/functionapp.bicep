@@ -5,11 +5,13 @@ param laId string
 param webAppHostName string
 param webJobUser string
 param webJobURI string
+@secure()
+param webJobPWD string
 
 
 var uniqueName = uniqueString(baseName, 'functionApp', resourceGroup().id)
 var stgSecretName = 'storageConnString'
-var webJobPWD = 'WebJobPWD'
+
 
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: uniqueName
@@ -40,9 +42,9 @@ resource kv 'Microsoft.KeyVault/vaults@2018-02-14' = {
   }
 
   resource webJobP 'secrets' = {
-    name: webJobPWD
-    properties: {
-      value: 'Noncnes'
+    name: 'webJobPWD'
+        properties: {
+      value: webJobPWD
     }
   }
 }

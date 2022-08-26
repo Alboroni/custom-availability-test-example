@@ -40,7 +40,7 @@ jobs:
       id: iac-deploy
       with:
         template: ./IaC/main.bicep
-        parameters: baseName=${{ github.event.inputs.baseName }}  webJobURI=${{ github.event.inputs.webJobURI }}
+        parameters: baseName=${{ github.event.inputs.baseName }}  webJobURI=${{ github.event.inputs.webJobURI }}  webJobPWD = ${{ secrets.WebJonPWD }}
         scope: subscription
         region: ${{ github.event.inputs.location }}
 

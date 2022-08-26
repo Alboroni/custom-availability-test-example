@@ -1,14 +1,12 @@
 ## A PoC environment using a custom availability test in Application Insights to monitor WebJobs status and availability.
 
-In this PoC deployment 
-
-We use a function and the trackavailability() from App insights inside a powershell module  SDK to confirm the the status of the web job and upload those results 
+In this PoC deployment We use a function and the trackavailability() from App insights inside a powershell module to confirm the the status of the web job as availability
 
 The deployment yml  requires the webJobURI to be populated. This is the URL format - https://your_app_service.scm.azurewebsites.net/api/triggeredwebjobs/your_web_job_name. You need to replace the app service name and web job name you created, The webJobUser is the User name for the WebJob found in properties of the web job where the password can also be found
-The password should be added to the created keyvault to being succesful monitoring
+The password should be added to the created keyvault secret or added as a paa
 
 
-We then use a custom track availability Powershell module to allow to use . 
+
 
 To run we need to find out the WEbJobURL in kudo , the user account and its password.
 
