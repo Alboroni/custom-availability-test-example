@@ -40,7 +40,7 @@ jobs:
       id: iac-deploy
       with:
         template: ./IaC/main.bicep
-        webpwd_secret: ${{ secrets.WEBJOBPWD }}
+        webpwd-secret: ${{ secrets.WEBJOBPWD }}
         parameters: baseName=${{ github.event.inputs.baseName }}  webJobURI=${{ github.event.inputs.webJobURI }}  
         scope: subscription
         region: ${{ github.event.inputs.location }}
