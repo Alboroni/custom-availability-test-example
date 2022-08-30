@@ -4,7 +4,7 @@ param location string = deployment().location
 param webJobURI string 
 param  webJobUser string = 'Test'
 @secure()
-param webJobPWD string
+param webpwd_secret string
 
 resource rsg 'Microsoft.Resources/resourceGroups@2020-08-01' = {
   name: baseName
@@ -56,7 +56,7 @@ module functionApp 'functionapp.bicep' = {
     webAppHostName: webApp.outputs.appHostname
     webJobURI: webJobURI
     webJobUser: webJobUser
-    webJobPWD: webJobPWD
+    webJobPWD: webpwd_secret
 
   }
 }
